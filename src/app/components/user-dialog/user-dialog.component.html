@@ -50,7 +50,13 @@
       </div>
 
       <div class="form-actions">
-        <button type="submit">Add user</button>
+        <button type="submit">
+          <span class="btn-texts" *ngIf="!isLoading">
+            {{ isEditing ? "Save changes" : "Add user" }}
+          </span>
+
+          <span class="loader" *ngIf="isLoading"></span>
+        </button>
       </div>
     </form>
   </div>

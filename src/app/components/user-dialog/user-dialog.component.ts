@@ -19,7 +19,9 @@ interface UserForm {
 export class UserDialogComponent implements OnInit {
   userForm!: FormGroup;
   user!: User;
+  userIndex!: number;
   isEditing: boolean = false;
+  isLoading: boolean = false;
 
   availableRoles: string[] = [
     'Product Manager',
@@ -33,7 +35,8 @@ export class UserDialogComponent implements OnInit {
     private httpService: HttpService,
     private dialog: MatDialog,
     private userService: UserService,
-    @Inject(MAT_DIALOG_DATA) private data: { user: User; isEditing: boolean }
+    @Inject(MAT_DIALOG_DATA)
+    private data: { user: User; isEditing: boolean; index: number }
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +54,7 @@ export class UserDialogComponent implements OnInit {
 
     this.user = this.data.user;
     this.isEditing = this.data.isEditing;
+    this.userIndex = this.data.index;
     if (this.isEditing) {
       this.userForm.setValue({
         name: this.user.name,
@@ -58,6 +62,8 @@ export class UserDialogComponent implements OnInit {
         roles: this.user.roles,
       });
     }
+
+    this.userService.isLoading.subscribe((status) => (this.isLoading = status));
   }
 
   get name() {
@@ -74,16 +80,26 @@ export class UserDialogComponent implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
-    console.log(this.userForm.value);
+    this.isLoading = true;
     const user = {
       name: this.name.value,
       email: this.email.value,
       roles: this.roles.value,
     };
-    this.httpService.addUser(user).subscribe((data) => {
-      this.userService.fetchAllUsers();
+    if (this.isEditing) {
+      this.userService.updateUser(user, this.userIndex);
+    } else {
+      this.httpService.addUser(user).subscribe((data) => {
+        this.userService.fetchAllUsers();
+      });
+    }
+    // if (!this.isLoading) {
+    //   this.dialog.closeAll();
+    // }
+    this.userService.isLoading.subscribe((status) => {
+      if (status == false) {
+        this.dialog.closeAll();
+      }
     });
-
-    this.dialog.closeAll();
   }
 }

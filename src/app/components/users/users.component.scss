@@ -5,6 +5,13 @@
   padding: 30px 30px;
 }
 
+.error-msg {
+  font-size: 2rem;
+  background-color: red;
+  color: $white;
+  padding: 10px 10px;
+}
+
 .users-header {
   font-size: 1.6rem;
   font-weight: 600;
@@ -23,6 +30,9 @@
 }
 
 .users-info {
+  &-loader {
+    width: 150px;
+  }
   &-heading {
     font-size: 1.2rem;
     font-weight: 500;
@@ -88,6 +98,48 @@
   }
 }
 
+table {
+  min-width: 700px;
+}
+
+.mat-column-sn {
+  width: 8%;
+}
+
+.mat-column-name {
+  width: 20%;
+}
+
+::ng-deep .mat-column-email {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.mat-column-roles {
+  width: 40%;
+  height: 100%;
+}
+
+.mat-column-icon {
+  width: 5%;
+}
+
+.roles {
+  &-main {
+    // display: inline-block;
+    overflow: hidden;
+    max-width: 200px;
+    white-space: nowrap;
+
+    & .another-roles {
+      overflow-x: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: pointer;
+    }
+  }
+}
+
 .menu-btn {
   width: 20px;
   height: 20px;
@@ -102,14 +154,6 @@
   }
 }
 
-// ::ng-deep .mat-menu-content.ng-tns-c138-0 {
-//   display: none;
-// }
-
-// .menu-container {
-//   padding: 10px;
-// }
-
-.edit-user-btn {
-  //   background: rgb(57, 57, 255);
+.role-menu-container {
+  padding: 10px;
 }

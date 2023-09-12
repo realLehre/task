@@ -9,11 +9,16 @@ import { UserDialogComponent } from '../components/user-dialog/user-dialog.compo
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+  currentUsers: User[] = [];
   users = new BehaviorSubject<User[]>([]);
   user = new Subject<User>();
+  isLoading = new Subject<boolean>();
+  isError = new Subject<boolean>();
   constructor(private httpService: HttpService, private dialog: MatDialog) {}
 
   fetchAllUsers() {
+    this.isLoading.next(true);
+
     this.httpService
       .getAllUsers()
       .pipe(
@@ -25,8 +30,17 @@ export class UserService {
           return newData;
         })
       )
-      .subscribe((result) => {
-        this.users.next(result);
+      .subscribe({
+        next: (result) => {
+          this.users.next(result);
+          this.currentUsers = result;
+        },
+        error: (err) => {
+          this.isLoading.next(false);
+          this.isError.next(true);
+
+          console.log(err);
+        },
       });
   }
 
@@ -41,23 +55,32 @@ export class UserService {
   }
 
   editUser(index: number) {
-    this.users.subscribe((users) => {
-      users.filter((user, userIndex) => {
-        if (userIndex == index) {
-          const dialogRef = this.dialog.open(UserDialogComponent, {
-            width: '600px',
-            height: '60%',
-            data: { user: user, isEditing: true },
-          });
-        }
-      });
+    this.currentUsers.filter((user, userIndex) => {
+      if (userIndex == index) {
+        const dialogRef = this.dialog.open(UserDialogComponent, {
+          width: '600px',
+          height: '60%',
+          data: { user: user, isEditing: true, index: index },
+        });
+      }
     });
   }
 
+  updateUser(user: User, index: number) {
+    this.currentUsers[index] = user;
+    this.httpService
+      .postUsers(this.currentUsers)
+      .subscribe((data) => this.fetchAllUsers());
+  }
+
   deleteUser(index: number) {
-    this.users.subscribe((users) => {
-      users = users.filter((user, userIndex) => userIndex != index);
-      console.log(users);
-    });
+    if (confirm('Delete user?')) {
+      this.currentUsers = this.currentUsers.filter(
+        (user, userIndex) => userIndex != index
+      );
+      this.httpService
+        .postUsers(this.currentUsers)
+        .subscribe((data) => this.fetchAllUsers());
+    }
   }
 }

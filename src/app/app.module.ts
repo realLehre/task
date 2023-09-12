@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { UserComponent } from './components/users/user/user.component';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { MaterialModule } from './material.module';
 import { Interceptor } from './services/http-interceptor.interceptor';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -24,12 +25,11 @@ import { Interceptor } from './services/http-interceptor.interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    NgxSkeletonLoaderModule,
     HttpClientModule,
     MaterialModule,
   ],
-  providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
