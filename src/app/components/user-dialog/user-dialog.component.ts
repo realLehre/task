@@ -22,6 +22,7 @@ export class UserDialogComponent implements OnInit {
   userIndex!: number;
   isEditing: boolean = false;
   isLoading: boolean = false;
+  isInvalid: boolean = false;
 
   availableRoles: string[] = [
     'Product Manager',
@@ -78,6 +79,10 @@ export class UserDialogComponent implements OnInit {
 
   onSubmit() {
     if (this.userForm.invalid) {
+      this.isInvalid = true;
+      setTimeout(() => {
+        this.isInvalid = false;
+      }, 1500);
       return;
     }
     this.isLoading = true;
@@ -93,9 +98,7 @@ export class UserDialogComponent implements OnInit {
         this.userService.fetchAllUsers();
       });
     }
-    // if (!this.isLoading) {
-    //   this.dialog.closeAll();
-    // }
+
     this.userService.isLoading.subscribe((status) => {
       if (status == false) {
         this.dialog.closeAll();

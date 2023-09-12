@@ -1,4 +1,7 @@
 <div class="user-dialog-container">
+  <div class="submit-error" [ngClass]="{ show: isInvalid }">
+    Fields cannot be empty
+  </div>
   <div class="user-form">
     <div class="user-form-heading">Add User</div>
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">

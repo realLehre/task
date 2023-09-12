@@ -81,9 +81,9 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   onAddUser() {
     const dialogRef = this.dialog.open(UserDialogComponent, {
-      width: '600px',
-      height: '60%',
+      panelClass: 'users_dialog',
       data: { isEditing: false },
+      autoFocus: false,
     });
   }
 

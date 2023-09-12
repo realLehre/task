@@ -15,7 +15,7 @@
 .users-header {
   font-size: 1.6rem;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .users-table {
@@ -98,8 +98,22 @@
   }
 }
 
-table {
+.zero-users {
+  font-size: 1.3rem;
+  margin-top: 30px;
+}
+
+.table-container {
   min-width: 700px;
+}
+
+.table-main {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+table {
+  width: 100%;
 }
 
 .mat-column-sn {
@@ -110,9 +124,8 @@ table {
   width: 20%;
 }
 
-::ng-deep .mat-column-email {
+.mat-column-email {
   width: 40px;
-  margin-right: 10px;
 }
 
 .mat-column-roles {
@@ -156,4 +169,15 @@ table {
 
 .role-menu-container {
   padding: 10px;
+}
+
+@media (max-width: 520px) {
+  .users-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .users-info-content {
+    margin-bottom: 15px;
+  }
 }
