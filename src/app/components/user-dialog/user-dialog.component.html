@@ -1,0 +1,57 @@
+<div class="user-dialog-container">
+  <div class="user-form">
+    <div class="user-form-heading">Add User</div>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          [ngClass]="{
+            'input-error': name.touched && name.invalid
+          }"
+        />
+        <p class="error name-error" *ngIf="name.touched && name.invalid">
+          Name cannot be empty
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Email</label>
+        <input
+          type="text"
+          id="email"
+          formControlName="email"
+          [ngClass]="{
+            'input-error': email.touched && email.invalid
+          }"
+        />
+        <p class="error name-error" *ngIf="email.touched && email.invalid">
+          Email cannot be empty
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Role(s)</label>
+        <mat-form-field>
+          <!-- <mat-label>Toppings</mat-label> -->
+          <mat-select formControlName="roles" multiple>
+            <mat-select-trigger>
+              <span class="example-additional-selection">
+                {{ roles.value }}
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let role of availableRoles" [value]="role">{{
+              role
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit">Add user</button>
+      </div>
+    </form>
+  </div>
+</div>
