@@ -47,6 +47,7 @@ export class UsersTableComponent implements OnInit {
     this._MatPaginatorIntl.itemsPerPageLabel = 'Users per page';
   }
 
+  // * display user roles
   onViewRoles(roles: Array<string>) {
     this.userRoles = roles;
   }

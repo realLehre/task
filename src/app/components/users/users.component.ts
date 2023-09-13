@@ -27,7 +27,9 @@ export class UsersComponent implements OnInit {
   constructor(private dialog: MatDialog, private userService: UserService) {}
 
   ngOnInit(): void {
+    // * fetch users from service
     this.userService.fetchAllUsers();
+    // * pass users data
     this.userService.users.subscribe((data) => {
       this.userService.isLoading.next(false);
       this.dataSource.data = data;
@@ -58,5 +60,9 @@ export class UsersComponent implements OnInit {
       data: { isEditing: false },
       autoFocus: false,
     });
+  }
+
+  onDeleteAllUsers() {
+    this.userService.deleteAllUsers();
   }
 }

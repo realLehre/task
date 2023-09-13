@@ -45,4 +45,8 @@
   <div class="table-container" *ngIf="!isError">
     <app-users-table [dataSource]="dataSource"></app-users-table>
   </div>
+
+  <div class="delete-users" *ngIf="dataSource.data.length > 0">
+    <button (click)="onDeleteAllUsers()">Delete all users</button>
+  </div>
 </div>

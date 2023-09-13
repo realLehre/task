@@ -16,6 +16,7 @@ export class UserService {
   isError = new Subject<boolean>();
   constructor(private httpService: HttpService, private dialog: MatDialog) {}
 
+  // * get all users
   fetchAllUsers() {
     this.isLoading.next(true);
 
@@ -44,6 +45,7 @@ export class UserService {
       });
   }
 
+  // * get a single user
   getUser(index: number) {
     this.users.subscribe((users) => {
       users.filter((user, userIndex) => {
@@ -54,6 +56,7 @@ export class UserService {
     });
   }
 
+  // * edit user
   editUser(index: number) {
     this.currentUsers.filter((user, userIndex) => {
       if (userIndex == index) {
@@ -67,6 +70,7 @@ export class UserService {
     });
   }
 
+  // * update user info
   updateUser(user: User, index: number) {
     this.currentUsers[index] = user;
     this.httpService
@@ -74,6 +78,7 @@ export class UserService {
       .subscribe((data) => this.fetchAllUsers());
   }
 
+  // * delete user
   deleteUser(index: number) {
     if (confirm('Delete user?')) {
       this.currentUsers = this.currentUsers.filter(
@@ -82,6 +87,13 @@ export class UserService {
       this.httpService
         .postUsers(this.currentUsers)
         .subscribe((data) => this.fetchAllUsers());
+    }
+  }
+
+  // * delete all users from database
+  deleteAllUsers() {
+    if (confirm('Delete all users? This action is not reversible')) {
+      this.httpService.postUsers([]).subscribe((data) => this.fetchAllUsers());
     }
   }
 }

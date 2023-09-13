@@ -92,6 +92,11 @@ form {
     color: $white;
     font-size: 1rem;
     cursor: pointer;
+
+    &.invalid {
+      background-color: $sec-color;
+      cursor: not-allowed;
+    }
   }
 }
 

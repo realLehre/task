@@ -4,6 +4,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { User } from '../users/user.model';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/users.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface UserForm {
   name: FormControl<string | null>;
@@ -23,6 +24,7 @@ export class UserDialogComponent implements OnInit {
   isEditing: boolean = false;
   isLoading: boolean = false;
   isInvalid: boolean = false;
+  isFieldError: boolean = false;
 
   availableRoles: string[] = [
     'Product Manager',
@@ -30,17 +32,18 @@ export class UserDialogComponent implements OnInit {
     'UI Designer',
     'Frontend Developer',
     'Backend Developer',
-    'Tomato',
   ];
   constructor(
     private httpService: HttpService,
     private dialog: MatDialog,
     private userService: UserService,
     @Inject(MAT_DIALOG_DATA)
-    private data: { user: User; isEditing: boolean; index: number }
+    private data: { user: User; isEditing: boolean; index: number },
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
+    // * init user form
     this.userForm = new FormGroup<UserForm>({
       name: new FormControl(null, Validators.required),
       email: new FormControl(
@@ -56,6 +59,8 @@ export class UserDialogComponent implements OnInit {
     this.user = this.data.user;
     this.isEditing = this.data.isEditing;
     this.userIndex = this.data.index;
+
+    // * on edit, populate input fields with user data
     if (this.isEditing) {
       this.userForm.setValue({
         name: this.user.name,
@@ -79,26 +84,32 @@ export class UserDialogComponent implements OnInit {
 
   onSubmit() {
     if (this.userForm.invalid) {
-      this.isInvalid = true;
-      setTimeout(() => {
-        this.isInvalid = false;
-      }, 1500);
       return;
     }
     this.isLoading = true;
+
+    // * get user info
     const user = {
       name: this.name.value,
       email: this.email.value,
       roles: this.roles.value,
     };
+
     if (this.isEditing) {
       this.userService.updateUser(user, this.userIndex);
     } else {
-      this.httpService.addUser(user).subscribe((data) => {
-        this.userService.fetchAllUsers();
+      this.httpService.addUser(user).subscribe({
+        next: (data) => this.userService.fetchAllUsers(),
+        error: (err) => {
+          this.isLoading = false;
+          this.snackBar.open('An error occured', '', {
+            duration: 3000,
+          });
+        },
       });
     }
 
+    // * close modal after http call has been made successfully
     this.userService.isLoading.subscribe((status) => {
       if (status == false) {
         this.dialog.closeAll();
