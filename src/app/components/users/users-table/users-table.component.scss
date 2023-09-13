@@ -1,0 +1,65 @@
+@import "config";
+
+.table-main {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 700px;
+}
+
+.mat-column-sn {
+  width: 8%;
+}
+
+.mat-column-name {
+  width: 20%;
+}
+
+.mat-column-email {
+  width: 40px;
+}
+
+.mat-column-roles {
+  width: 40%;
+  height: 100%;
+}
+
+.mat-column-icon {
+  width: 5%;
+}
+
+.roles {
+  &-main {
+    overflow: hidden;
+    max-width: 200px;
+    white-space: nowrap;
+
+    & .another-roles {
+      overflow-x: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: pointer;
+    }
+  }
+}
+
+.menu-btn {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  & .fa-ellipsis-vertical {
+    color: $main-color;
+    cursor: pointer;
+  }
+}
+
+.role-menu-container {
+  padding: 10px;
+}

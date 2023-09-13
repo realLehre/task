@@ -16,6 +16,7 @@
   font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 30px;
+  line-height: 1.1;
 }
 
 .users-table {
@@ -103,74 +104,6 @@
   margin-top: 30px;
 }
 
-.table-container {
-  min-width: 700px;
-}
-
-.table-main {
-  width: 100%;
-  overflow-x: scroll;
-}
-
-table {
-  width: 100%;
-}
-
-.mat-column-sn {
-  width: 8%;
-}
-
-.mat-column-name {
-  width: 20%;
-}
-
-.mat-column-email {
-  width: 40px;
-}
-
-.mat-column-roles {
-  width: 40%;
-  height: 100%;
-}
-
-.mat-column-icon {
-  width: 5%;
-}
-
-.roles {
-  &-main {
-    // display: inline-block;
-    overflow: hidden;
-    max-width: 200px;
-    white-space: nowrap;
-
-    & .another-roles {
-      overflow-x: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      cursor: pointer;
-    }
-  }
-}
-
-.menu-btn {
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  & .fa-ellipsis-vertical {
-    color: $main-color;
-    cursor: pointer;
-  }
-}
-
-.role-menu-container {
-  padding: 10px;
-}
-
 @media (max-width: 520px) {
   .users-actions {
     flex-direction: column;
@@ -179,5 +112,29 @@ table {
 
   .users-info-content {
     margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 420px) {
+  .users-actions {
+    &-main {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      width: 100%;
+
+      &-search {
+        margin-right: 0px;
+        margin-bottom: 10px;
+        width: 100%;
+      }
+
+      &-btn {
+        width: 100%;
+        & button {
+          width: 100%;
+        }
+      }
+    }
   }
 }

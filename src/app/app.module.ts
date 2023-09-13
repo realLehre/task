@@ -10,9 +10,16 @@ import { UsersComponent } from './components/users/users.component';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { MaterialModule } from './material.module';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { UsersTableComponent } from './components/users/users-table/users-table.component';
 
 @NgModule({
-  declarations: [AppComponent, UsersComponent, UserDialogComponent],
+  declarations: [
+    AppComponent,
+    UsersComponent,
+    UserDialogComponent,
+    UsersTableComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,7 +29,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     HttpClientModule,
     MaterialModule,
   ],
-  providers: [],
+  providers: [MatPaginatorIntl],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
