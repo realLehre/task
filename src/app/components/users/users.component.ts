@@ -5,6 +5,7 @@ import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 import { User } from './user.model';
 import { UserService } from 'src/app/services/users.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-users',
