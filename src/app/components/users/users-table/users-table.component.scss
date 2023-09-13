@@ -8,9 +8,6 @@
 table {
   width: 100%;
   min-width: 700px;
-  //   table-layout: fixed;
-  //   word-break: break-all;
-  //   word-wrap: break-word;
 }
 
 .mat-column-sn {
@@ -18,14 +15,10 @@ table {
 }
 
 .mat-column-name {
-  max-width: 50px;
+  max-width: 55px;
+  min-width: 50px;
   border-right: 1px solid rgba($sec-color, 0.2);
   text-transform: capitalize;
-}
-
-td {
-  word-break: break-all;
-  word-wrap: break-word;
 }
 
 .mat-column-email {
@@ -46,21 +39,6 @@ td {
   white-space: nowrap;
 }
 
-.roles {
-  &-main {
-    overflow: hidden;
-    max-width: 200px;
-    white-space: nowrap;
-
-    & .another-roles {
-      overflow-x: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      cursor: pointer;
-    }
-  }
-}
-
 .menu-btn {
   width: 20px;
   height: 20px;
@@ -75,6 +53,12 @@ td {
   }
 }
 
+.displayed-roles {
+  & li {
+    list-style: none;
+  }
+}
+
 .role-menu-container {
-  padding: 10px;
+  padding: 0 10px;
 }
