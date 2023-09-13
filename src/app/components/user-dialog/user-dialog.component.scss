@@ -70,7 +70,6 @@ form {
   }
 
   & mat-form-field {
-    margin-top: -10px;
     width: 100%;
   }
 
@@ -81,6 +80,10 @@ form {
   & .error {
     color: red;
   }
+}
+
+.mat-select-panel {
+  background-color: $white;
 }
 
 .form-actions {

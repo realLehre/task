@@ -1,10 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../user.model';
-import { MatLegacyPaginator as MatPaginator, MatLegacyPaginatorIntl as MatPaginatorIntl } from '@angular/material/legacy-paginator';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { UserService } from 'src/app/services/users.service';
-import { UserDialogComponent } from '../../user-dialog/user-dialog.component';
 
 @Component({
   selector: 'app-users-table',

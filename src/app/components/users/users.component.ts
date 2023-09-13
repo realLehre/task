@@ -5,13 +5,12 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from '../user-dialog/user-dialog.component';
-import { HttpService } from 'src/app/services/http.service';
+
 import { User } from './user.model';
 import { UserService } from 'src/app/services/users.service';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
-import { MatLegacyPaginator as MatPaginator, MatLegacyPaginatorIntl as MatPaginatorIntl } from '@angular/material/legacy-paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-users',
@@ -56,7 +55,7 @@ export class UsersComponent implements OnInit {
   // * add new user
   onAddUser() {
     const dialogRef = this.dialog.open(UserDialogComponent, {
-      panelClass: 'users_dialog',
+      width: '600px',
       data: { isEditing: false },
       autoFocus: false,
     });

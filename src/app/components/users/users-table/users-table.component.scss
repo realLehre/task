@@ -8,6 +8,9 @@
 table {
   width: 100%;
   min-width: 700px;
+  //   table-layout: fixed;
+  //   word-break: break-all;
+  //   word-wrap: break-word;
 }
 
 .mat-column-sn {
@@ -15,12 +18,18 @@ table {
 }
 
 .mat-column-name {
-  width: 20%;
+  max-width: 50px;
+  border-right: 1px solid rgba($sec-color, 0.2);
   text-transform: capitalize;
 }
 
+td {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
 .mat-column-email {
-  width: 40px;
+  width: 30%;
 }
 
 .mat-column-roles {
@@ -30,6 +39,11 @@ table {
 
 .mat-column-icon {
   width: 5%;
+}
+
+::ng-deep .mat-mdc-paginator-range-label {
+  display: block;
+  white-space: nowrap;
 }
 
 .roles {

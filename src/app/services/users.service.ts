@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 import { User } from '../components/users/user.model';
 import { UserDialogComponent } from '../components/user-dialog/user-dialog.component';
@@ -61,7 +61,6 @@ export class UserService {
     this.currentUsers.filter((user, userIndex) => {
       if (userIndex == index) {
         const dialogRef = this.dialog.open(UserDialogComponent, {
-          panelClass: 'users_dialog',
           width: '600px',
           height: '60%',
           data: { user: user, isEditing: true, index: index },
