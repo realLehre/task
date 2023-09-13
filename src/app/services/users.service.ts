@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 import { User } from '../components/users/user.model';
 import { UserDialogComponent } from '../components/user-dialog/user-dialog.component';

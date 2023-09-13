@@ -10,7 +10,7 @@ import { UsersComponent } from './components/users/users.component';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { MaterialModule } from './material.module';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MatLegacyPaginatorIntl as MatPaginatorIntl } from '@angular/material/legacy-paginator';
 import { UsersTableComponent } from './components/users/users-table/users-table.component';
 
 @NgModule({
