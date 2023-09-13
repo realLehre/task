@@ -94,7 +94,7 @@ form {
     cursor: pointer;
 
     &.invalid {
-      background-color: $sec-color;
+      background-color: rgba($sec-color, 0.2);
       cursor: not-allowed;
     }
   }
