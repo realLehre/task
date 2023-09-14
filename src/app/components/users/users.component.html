@@ -21,7 +21,7 @@
     </div>
 
     <div class="users-actions-main">
-      <div class="users-actions-main-search">
+      <div class="users-actions-main-search" *ngIf="dataSource.data.length > 0">
         <mat-icon class="search-icon">search</mat-icon>
         <input
           type="text"
